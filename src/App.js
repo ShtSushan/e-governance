@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import BirthRegistration from './components/BirthRegistration';
+import DeathRegistration from './components/DeathRegistration';
+import MarriageRegistration from './components/MarriageRegistration';
+import Footer from './components/Footer';
 
-function App() {
+const App = () => {
+  const [page, setPage] = useState('home');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar setPage={setPage} />
+      <div className="container mt-4">
+        {page === 'home' && <Home />}
+        {page === 'birth' && <BirthRegistration />}
+        {page === 'death' && <DeathRegistration />}
+        {page === 'marriage' && <MarriageRegistration />}
+      </div>
+      <Footer />
     </div>
   );
 }
